@@ -7,7 +7,7 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 
-public class ProjectDAO implements ProjectDAOInterface <Project>{
+public class ProjectDAO implements DAOInterface<Project> {
 
     private Session currentSession;
     private Transaction currentTransaction;
@@ -38,6 +38,7 @@ public class ProjectDAO implements ProjectDAOInterface <Project>{
 
     @Override
     public void persist(Project enity) {
+
         getCurrentSession().persist(enity);
     }
 
@@ -58,7 +59,7 @@ public class ProjectDAO implements ProjectDAOInterface <Project>{
     }
 
     @Override
-    public List<Project> findByName(String enity) {
+    public List<Project> find(String enity) {
 
         List<Project> projects = (List<Project>) getCurrentSession().
                 createQuery("from Project where lower(projectName) like " + "'%" + enity.toLowerCase() + "%'").list();

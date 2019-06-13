@@ -41,7 +41,7 @@ public class DrawService {
 
     public List<Draw> findByName(String enity) {
         drawDAO.openCurrentSession();
-        List<Draw> projects = drawDAO.findByString(enity);
+        List<Draw> projects = drawDAO.find(enity);
         drawDAO.closeCurrentSession();
         return projects;
     }

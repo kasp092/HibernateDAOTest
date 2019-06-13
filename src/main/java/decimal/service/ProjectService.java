@@ -16,6 +16,7 @@ public class ProjectService {
         projectDAO.openCurrentSessionWithTransaction();
         projectDAO.persist(enity);
         projectDAO.closeCurrentSessionWithTransaction();
+
     }
 
     public void update(Project enity) {
@@ -40,7 +41,7 @@ public class ProjectService {
 
     public List<Project> findByName(String enity) {
         projectDAO.openCurrentSession();
-        List<Project> projects = projectDAO.findByName(enity);
+        List<Project> projects = projectDAO.find(enity);
         projectDAO.closeCurrentSession();
         return projects;
     }

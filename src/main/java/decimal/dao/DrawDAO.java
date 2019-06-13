@@ -6,7 +6,7 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class DrawDAO extends Draw implements DrawDAOInerface {
+public class DrawDAO extends Draw implements DAOInterface<Draw>{
     private Session currentSession;
     private Transaction currentTransaction;
 
@@ -35,12 +35,12 @@ public class DrawDAO extends Draw implements DrawDAOInerface {
     }
 
     @Override
-    public void persist(Object enity) {
+    public void persist(Draw enity) {
         getCurrentSession().persist(enity);
     }
 
     @Override
-    public void update(Object enity) {
+    public void update(Draw enity) {
         getCurrentSession().update(enity);
     }
 
@@ -51,14 +51,14 @@ public class DrawDAO extends Draw implements DrawDAOInerface {
     }
 
     @Override
-    public void delete(Object enity) {
+    public void delete(Draw enity) {
         getCurrentSession().delete(enity);
     }
 
     @Override
-    public List findByString(String enity) {
+    public List find(String enity) {
         List<Draw> list = (List<Draw>) getCurrentSession().
-                createQuery("from Project where lower(*) like " + "'%" + enity.toLowerCase() + "%'").list();
+                createQuery("from Draw where lower(*) like " + "'%" + enity.toLowerCase() + "%'").list();
         return list;
     }
 }
